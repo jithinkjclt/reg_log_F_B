@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:leran_f_b_1/pages/login/login_cubit.dart';
 import 'package:leran_f_b_1/pages/registor/registor.dart';
-
-import '../homePage/homePage.dart';
 
 class login extends StatelessWidget {
   const login({super.key});
@@ -28,7 +25,6 @@ class login extends StatelessWidget {
                             fit: BoxFit.fill,
                             image: NetworkImage(
                                 "https://media3.giphy.com/media/QBd2kLB5qDmysEXre9/giphy.gif?cid=6c09b9522jc17mi4snpg2ikk2qci2hec92ap9aqo34kz8rvu&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g")),
-                        // color: Colors.green,
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(150))),
                   ),
@@ -147,38 +143,37 @@ class login extends StatelessWidget {
                   const SizedBox(
                     height: 15,
                   ),
-                  InkWell(
-                    onTap: () {},
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(left: 15.0, right: 15, top: 10),
-                      child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.greenAccent,
-                              borderRadius: BorderRadius.circular(50),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    blurRadius: 5,
-                                    blurStyle: BlurStyle.outer)
-                              ]),
-                          width: 390,
-                          height: 60,
-                          child: Center(
-                            child: InkWell(
-                              onTap: () {
-                                cubit.login();
-                              },
-                              child: const Text(
-                                "Sign in",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
+                  Padding(
+                      padding: const EdgeInsets.only(
+                          left: 15.0, right: 15, top: 10),
+                      child: cubit.flag == true
+                          ? InkWell(
+                        onTap: () {
+                          cubit.login();
+                        },
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.greenAccent,
+                                    borderRadius: BorderRadius.circular(50),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Colors.black12,
+                                          blurRadius: 5,
+                                          blurStyle: BlurStyle.outer)
+                                    ]),
+                                width: 390,
+                                height: 60,
+                                child: const Center(
+                                  child: Text(
+                                    "Sign in",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
                               ),
-                            ),
-                          )),
-                    ),
-                  ),
+                          )
+                          : const CircularProgressIndicator()),
                   const SizedBox(
                     height: 25,
                   ),

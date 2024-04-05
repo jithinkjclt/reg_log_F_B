@@ -14,21 +14,34 @@ class RegistorCubit extends Cubit<RegistorState> {
   BuildContext context;
   TextEditingController usectr = TextEditingController();
   TextEditingController passrctr = TextEditingController();
+  TextEditingController mobil = TextEditingController();
+  bool divaice = true;
 
   registor() async {
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
               email: usectr.text.trim(), password: passrctr.text.trim())
-          .then((value) => Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return home();
-          },)));
+          .then((value) => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) {
+                  return home();
+                },
+              )));
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger(
           child: AlertDialog(
-            backgroundColor: Colors.red,
+        backgroundColor: Colors.red,
         title: Text(e.code),
       ));
     }
+  }
+  mobile(){
+    divaice = false;
+    emit(RegistorInitial());
+
+  }
+  mail(){
+    divaice = true;
+    emit(RegistorInitial());
   }
 }

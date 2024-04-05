@@ -1,9 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:meta/meta.dart';
 
 import '../homePage/homePage.dart';
 
@@ -15,19 +12,40 @@ class LoginCubit extends Cubit<LoginState> {
 
   TextEditingController userctr = TextEditingController();
   TextEditingController passctr = TextEditingController();
+  bool flag = true;
+
 
   login() async {
-    try {
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-              email: userctr.text.trim(), password: passctr.text.trim())
-          .then((value) => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) {
-                  return const home();
-                },
-              )));
-    } on FirebaseAuthException catch (e) {
-      ScaffoldMessenger(child: SnackBar(content: Text(e.code)));
+    if (userctr.text.isNotEmpty && passctr.text.length>8) {
+      flag = false;
+      emit(LoginInitial());
+
+      try {
+        await FirebaseAuth.instance
+            .signInWithEmailAndPassword(
+            email: userctr.text.trim(), password: passctr.text.trim())
+            .then((value) =>
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) {
+                return const home();
+              },
+            )));
+      } on FirebaseException catch (e) {
+        flag = true;
+
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(e.message.toString())));
+        print(e.code);
+      } }else{
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("This fields is required"),backgroundColor: Colors.red, ));
     }
+
+      emit(LoginInitial());
+    }
+
+
   }
-}
+
+
+
