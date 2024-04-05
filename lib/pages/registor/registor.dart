@@ -5,6 +5,7 @@ import 'package:leran_f_b_1/pages/login/login_cubit.dart';
 import 'package:leran_f_b_1/pages/registor/registor_cubit.dart';
 
 import '../homePage/homePage.dart';
+import '../login/login.dart';
 
 class registor extends StatelessWidget {
   const registor({super.key});
@@ -170,7 +171,7 @@ class registor extends StatelessWidget {
                               onTap: () {
                                 cubit.registor();
                               },
-                              child: Text(
+                              child: const Text(
                                 "Registor",
                                 style: TextStyle(
                                     color: Colors.white,
@@ -183,25 +184,35 @@ class registor extends StatelessWidget {
                   const SizedBox(
                     height: 25,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
-                      Text(
-                        "Don't have any account? ",
+                      const Text(
+                        "Already have an account ",
                         style: TextStyle(
                             fontSize: 12, fontWeight: FontWeight.w300),
                       ),
-                      Text(
-                        "Sign up?",
-                        style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.blueAccent,
-                            fontWeight: FontWeight.bold),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                            builder: (context) {
+                              return const login();
+                            },
+                          ));
+                        },
+                        child: const Text(
+                          "Login ",
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.blueAccent,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
                     ],

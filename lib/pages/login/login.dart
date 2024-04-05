@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:leran_f_b_1/pages/login/login_cubit.dart';
+import 'package:leran_f_b_1/pages/registor/registor.dart';
 
 import '../homePage/homePage.dart';
 
@@ -28,8 +29,8 @@ class login extends StatelessWidget {
                             image: NetworkImage(
                                 "https://media3.giphy.com/media/QBd2kLB5qDmysEXre9/giphy.gif?cid=6c09b9522jc17mi4snpg2ikk2qci2hec92ap9aqo34kz8rvu&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g")),
                         // color: Colors.green,
-                        borderRadius:
-                            BorderRadius.only(bottomRight: Radius.circular(150))),
+                        borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(150))),
                   ),
                   const SizedBox(
                     height: 15,
@@ -130,13 +131,13 @@ class login extends StatelessWidget {
                       ),
                       Text(
                         "Forget your ",
-                        style:
-                            TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
+                        style: TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.w300),
                       ),
                       Text(
                         "Password?",
-                        style:
-                            TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         width: 15,
@@ -163,7 +164,7 @@ class login extends StatelessWidget {
                               ]),
                           width: 390,
                           height: 60,
-                          child:  Center(
+                          child: Center(
                             child: InkWell(
                               onTap: () {
                                 cubit.login();
@@ -181,25 +182,35 @@ class login extends StatelessWidget {
                   const SizedBox(
                     height: 25,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
-                      Text(
+                      const Text(
                         "Don't have any account? ",
-                        style:
-                            TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
-                      ),
-                      Text(
-                        "Sign Up?",
                         style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.greenAccent,
-                            fontWeight: FontWeight.bold),
+                            fontSize: 12, fontWeight: FontWeight.w300),
                       ),
-                      SizedBox(
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushReplacement(MaterialPageRoute(
+                            builder: (context) {
+                              return const registor();
+                            },
+                          ));
+                        },
+                        child: const Text(
+                          "Sign Up?",
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.greenAccent,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      const SizedBox(
                         width: 15,
                       ),
                     ],
