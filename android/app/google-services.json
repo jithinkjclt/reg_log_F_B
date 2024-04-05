@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1060709924246",
+    "project_id": "learn-s-m",
+    "storage_bucket": "learn-s-m.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060709924246:android:e9053d45e1caaeeb66f1b7",
+        "android_client_info": {
+          "package_name": "com.example.leran_f_b_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBk1M_z7gseAjjtphvbeX-ZwJuVFuV9On8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
