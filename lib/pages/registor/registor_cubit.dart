@@ -21,12 +21,7 @@ class RegistorCubit extends Cubit<RegistorState> {
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
-              email: usectr.text.trim(), password: passrctr.text.trim())
-          .then((value) => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) {
-                  return home();
-                },
-              )));
+              email: usectr.text.trim(), password: passrctr.text.trim());
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger(
           child: AlertDialog(
@@ -45,3 +40,5 @@ class RegistorCubit extends Cubit<RegistorState> {
     emit(RegistorInitial());
   }
 }
+
+// core auth
