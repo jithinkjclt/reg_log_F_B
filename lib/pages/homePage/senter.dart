@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'Sizedbox.dart';
 
 class Senter extends StatelessWidget {
-  const Senter({super.key, required this.text});
+  const Senter({super.key, required this.text, required this.time});
   final String text;
+  final String time;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class Senter extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const B(x: 5),
-            const Text("12.34",style: TextStyle(fontWeight: FontWeight.w300),),
+             Text(time,style: const TextStyle(fontWeight: FontWeight.w300),),
             Container(
               width: 280,
               height: 100,
