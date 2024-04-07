@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:leran_f_b_1/pages/SplashScreen/Spalsh.dart';
 import 'package:leran_f_b_1/pages/homePage/homePage.dart';
 import 'package:leran_f_b_1/pages/login/login.dart';
 import 'package:leran_f_b_1/pages/registor/registor.dart';
@@ -21,18 +22,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return home();
-          } else {
-            return const login();
-          }
-        },
-      ),
+      home: Splash(),
     );
   }
 }

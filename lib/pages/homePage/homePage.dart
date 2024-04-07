@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:leran_f_b_1/pages/homePage/reciver.dart';
 import 'package:leran_f_b_1/pages/homePage/senter.dart';
 import 'home_cubit.dart';
 
@@ -40,20 +40,28 @@ class home extends StatelessWidget {
                     children: [
                       Expanded(
                         flex: 8,
-                        child: ListView.separated(
+                        child: ListView.builder(
                             itemBuilder: (context, index) {
-                              return Senter(
-                                text: snapshot.data!.docs[index]["messege"],
-                                time: "s",
-                              );
-                            },
-                            separatorBuilder: (context, index) {
-                              return const Divider();
+                              return InkWell(
+                                  onTap: () {
+                                    cubit.deleteData(
+                                        snapshot.data!.docs[index].id);
+                                  },
+                                  child: snapshot.data!.docs[index]["user"] ==
+                                          values
+                                      ? Senter(
+                                          text: snapshot.data!.docs[index]
+                                              ["messege"],
+                                          time: "12.45",
+                                        )
+                                      : Reciver(
+                                          text: snapshot.data!.docs[index]
+                                              ["messege"]));
                             },
                             itemCount: snapshot.data!.docs.length),
                       ),
                       Expanded(
-                        flex:1 ,
+                        flex: 1,
                         child: Row(
                           children: [
                             Padding(
@@ -80,8 +88,6 @@ class home extends StatelessWidget {
                             IconButton(
                                 onPressed: () {
                                   cubit.dataStore();
-                                  cubit.chat.clear();
-                                  print("click");
                                 },
                                 icon: const Icon(
                                   Icons.send,

@@ -144,14 +144,14 @@ class login extends StatelessWidget {
                     height: 15,
                   ),
                   Padding(
-                      padding: const EdgeInsets.only(
-                          left: 15.0, right: 15, top: 10),
+                      padding:
+                          const EdgeInsets.only(left: 15.0, right: 15, top: 10),
                       child: cubit.flag == true
                           ? InkWell(
-                        onTap: () {
-                          cubit.login();
-                        },
-                            child: Container(
+                              onTap: () {
+                                cubit.login();
+                              },
+                              child: Container(
                                 decoration: BoxDecoration(
                                     color: Colors.greenAccent,
                                     borderRadius: BorderRadius.circular(50),
@@ -172,7 +172,7 @@ class login extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                          )
+                            )
                           : const CircularProgressIndicator()),
                   const SizedBox(
                     height: 25,
