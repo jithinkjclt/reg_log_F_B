@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:leran_f_b_1/pages/homePage/reciver.dart';
 import 'package:leran_f_b_1/pages/homePage/senter.dart';
+import '../LocalStorage/LocalStorage.dart';
+import '../login/login.dart';
 import 'home_cubit.dart';
 
-class home extends StatelessWidget {
-  home({
+class Home extends StatelessWidget {
+  const Home({
     super.key,
   });
 
@@ -17,7 +19,12 @@ class home extends StatelessWidget {
       appBar: AppBar(automaticallyImplyLeading: false, actions: [
         IconButton(
             onPressed: () {
-              FirebaseAuth.instance.signOut();
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                builder: (context) {
+                  return const login();
+                },
+              ));
+              LocalStorage().deleteUser();
             },
             icon: const Icon(Icons.exit_to_app)),
         const SizedBox(
@@ -25,17 +32,22 @@ class home extends StatelessWidget {
         )
       ]),
       backgroundColor: const Color(0xFFF1F1F1),
-      body: BlocProvider(
-        create: (context) => HomeCubit(),
-        child: BlocBuilder<HomeCubit, HomeState>(
-          builder: (context, state) {
-            final cubit = context.read<HomeCubit>();
-            return StreamBuilder(
-                stream: FirebaseFirestore.instance
-                    .collection("messege")
-                    .orderBy("time")
-                    .snapshots(),
-                builder: (context, snapshot) {
+      body: StreamBuilder(
+          stream: FirebaseFirestore.instance
+              .collection("messege")
+              .orderBy("time")
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return BlocProvider(
+              create: (context) => HomeCubit(),
+              child: BlocBuilder<HomeCubit, HomeState>(
+                builder: (context, state) {
+                  final cubit = context.read<HomeCubit>();
                   return Column(
                     children: [
                       Expanded(
@@ -99,10 +111,10 @@ class home extends StatelessWidget {
                       ),
                     ],
                   );
-                });
-          },
-        ),
-      ),
+                },
+              ),
+            );
+          }),
     );
   }
 }

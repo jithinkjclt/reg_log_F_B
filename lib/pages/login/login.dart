@@ -76,7 +76,7 @@ class login extends StatelessWidget {
                         child: TextFormField(
                           controller: cubit.userctr,
                           decoration: const InputDecoration(
-                              hintText: "user name",
+                              hintText: "Email id",
                               hintStyle: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w400,

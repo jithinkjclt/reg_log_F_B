@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:meta/meta.dart';
 
 import '../LocalStorage/LocalStorage.dart';
 
@@ -10,7 +9,7 @@ part 'home_state.dart';
 String? values;
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(HomeInitial());
+  HomeCubit() : super(HomeInitial()) {}
 
   TextEditingController chat = TextEditingController();
 

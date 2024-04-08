@@ -22,11 +22,13 @@ class SplashCubit extends Cubit<SplashState> {
   }
 
   flash() async {
-    String value = await LocalStorage().setUser();
+
+    String? value = await LocalStorage().setUser();
+    print(">>>>>>>>>>>>>>>>value");
 
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-          builder: (context) => value == null ? const login() : home()),
+          builder: (context) => value == null ? const login() : Home()),
     );
   }
 }

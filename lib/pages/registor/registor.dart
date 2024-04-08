@@ -96,7 +96,7 @@ class registor extends StatelessWidget {
                                     child: TextFormField(
                                       controller: cubit.usectr,
                                       decoration: const InputDecoration(
-                                          hintText: "user name",
+                                          hintText: "Email id",
                                           hintStyle: TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
