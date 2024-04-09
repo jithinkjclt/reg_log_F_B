@@ -24,7 +24,7 @@ class SplashCubit extends Cubit<SplashState> {
   flash() async {
 
     String? value = await LocalStorage().setUser();
-    print(">>>>>>>>>>>>>>>>value");
+    print(">>>>>>>>>>>>>>>>$value");
 
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(

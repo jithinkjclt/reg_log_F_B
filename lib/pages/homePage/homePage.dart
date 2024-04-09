@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:leran_f_b_1/pages/homePage/reciver.dart';
@@ -16,21 +15,24 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(automaticallyImplyLeading: false, actions: [
-        IconButton(
-            onPressed: () {
-              Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context) {
-                  return const login();
+      appBar: AppBar(
+          title: Text(values!),
+          automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) {
+                      return const login();
+                    },
+                  ));
+                  LocalStorage().deleteUser();
                 },
-              ));
-              LocalStorage().deleteUser();
-            },
-            icon: const Icon(Icons.exit_to_app)),
-        const SizedBox(
-          width: 50,
-        )
-      ]),
+                icon: const Icon(Icons.exit_to_app)),
+            const SizedBox(
+              width: 50,
+            )
+          ]),
       backgroundColor: const Color(0xFFF1F1F1),
       body: StreamBuilder(
           stream: FirebaseFirestore.instance
@@ -79,7 +81,7 @@ class Home extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                width: 290,
+                                width: 280,
                                 decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black26),
                                   borderRadius: BorderRadius.circular(40),

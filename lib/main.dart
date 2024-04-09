@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:leran_f_b_1/pages/SplashScreen/Spalsh.dart';
-import 'package:leran_f_b_1/pages/login/login.dart';
 import 'firebase_options.dart';
 
 void main() async {
