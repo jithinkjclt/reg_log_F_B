@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import '../LocalStorage/LocalStorage.dart';
@@ -27,10 +28,10 @@ class LoginCubit extends Cubit<LoginState> {
             .then((value) => Navigator.of(context)
                     .pushReplacement(MaterialPageRoute(builder: (context) {
                   final data1 = LocalStorage();
-                  data1.getUser(userctr.text);
-                  return Home ();
+                  data1.getUser(FirebaseAuth.instance.currentUser!.uid);
+                  print(data1);
+                  return Home();
                 })));
-
       } on FirebaseException catch (e) {
         flag = true;
 

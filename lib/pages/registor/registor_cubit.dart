@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 
+import '../LocalStorage/LocalStorage.dart';
 import '../homePage/homePage.dart';
 
 part 'registor_state.dart';
@@ -21,7 +22,14 @@ class RegistorCubit extends Cubit<RegistorState> {
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
-              email: usectr.text.trim(), password: passrctr.text.trim());
+              email: usectr.text.trim(), password: passrctr.text.trim())
+          .then((value) => Navigator.of(context)
+                  .pushReplacement(MaterialPageRoute(builder: (context) {
+                final data1 = LocalStorage();
+                data1.getUser(FirebaseAuth.instance.currentUser!.uid);
+                print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<$data1");
+                return Home();
+              })));
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger(
           child: AlertDialog(
@@ -30,12 +38,13 @@ class RegistorCubit extends Cubit<RegistorState> {
       ));
     }
   }
-  mobile(){
+
+  mobile() {
     divaice = false;
     emit(RegistorInitial());
-
   }
-  mail(){
+
+  mail() {
     divaice = true;
     emit(RegistorInitial());
   }
